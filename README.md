@@ -122,6 +122,10 @@ Add a proxy_pass to flaskhelloworld atlocation /
 location / {
     proxy_pass http://flaskhelloworld;
 }
+
+location /endpoint {
+    proxy_pass http://flaskhelloworld/route
+}
 ```
 Restart Nginx 
 ```bash
