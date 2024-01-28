@@ -134,7 +134,7 @@ sudo systemctl restart nginx
 Tada! Our application is up!
 
 When making changes to API then you have to restart both API and nginx:
-```bash
+
 
 # HTTPS or SSL setup
 ### Nginx/HTTPS Configuration
@@ -176,7 +176,7 @@ You will be prompted for an email address and other info.
 
 The Docker-compose configuration:
 
-```
+```bash
 nginx: 
  image : your_nginx_image/nginx:latest 
  ports : 
@@ -184,12 +184,12 @@ nginx:
      - “443:443”
  volumes: 
      - /path/to/cert:/etc/path/to/cert
-```bash
+```
 
 
 The nginx config file /etc/nginx/sites-available/default
 
-```
+```bash
 http {
         
     index index.html;
@@ -221,11 +221,11 @@ http {
 
 }
 
-```bash
+```
 
 you can renew the certificate using the command below. You can schedule this on a monthly basis with Cron:
 
-```
-certbot renew
 ```bash
+certbot renew
+```
 
