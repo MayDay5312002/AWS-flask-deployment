@@ -229,3 +229,16 @@ you can renew the certificate using the command below. You can schedule this on 
 certbot renew
 ```
 
+you can automatically renew the ssl by:
+`
+sudo crontab -l
+`
+you should see this line in /etc/cron.d/crontab
+`
+0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew
+`
+To see the config of crontab:
+`
+sudo cat /etc/cron.d/certbot
+`
+
