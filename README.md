@@ -135,7 +135,95 @@ Tada! Our application is up!
 
 When making changes to API then you have to restart both API and nginx:
 ```bash
-sudo systemctl restart API
-sudo systemctl restart nginx
+
+<h2>HTTPS or SSL setup</h2>
+### Nginx/HTTPS Configuration
+
+#### About
+
+HTTPS is when HTTP (hypertext transfer protocol); a communication protocol, is encrypted using TLS (transport layer security).
+
+This means that if anyone is eavesdropping on the communication between a server and a client, they will eavesdrop on encrypted data that is hard to decipher and is therefore secure.
+
+TLS is the more recent term which replaces the term SSL (secure socket layer) but we can refer to them as SSL/TLS.
+
+The principle behind SSL is something you have probably come across before and it is public/private key pair.
+
+Those 2 keys are mathematically related which means that if a message is encrypted with a public key, it can only be decrypted with the respective private key.
+
+For SSL, we have a public key and a private key belonging to your domain and we have a certificate that validates  this public key belongs to your domain.
+
+The certificate is signed by a trusted party called the certificate authority (CA).
+
+When using Letsencrypt on your server to create a certificate, a public key and a private key are created. Only the public key is sent to the CA. The CA then gives you the SSL certificate to install on your server. Note that your browser has a list of trusted CAs that it can refer to.
+
+#### Steps
+
+You need to be on the server that has a DNS record for the domain that you want to create a digital certificate for.
+
+Your server also has the firewall set up to allow traffic at the relevant ports.
+
+You want to install the Letsencrypt client and the certbot Nginx plugin:
+
+`sudo apt install certbot python3-certbot-nginx`
+
+When you run certbot, the nginx config file gets updated automatically to include the SSL certificate path. It does that by identifying the block that contains the server_name directive.
+
+`sudo certbot --nginx -d mydomain.com -d www.mydomain.com`
+
+You will be prompted for an email address and other info.
+
+
+The Docker-compose configuration:
+
 ```
+nginx: 
+ image : your_nginx_image/nginx:latest 
+ ports : 
+     - “80:80” 
+     - “443:443”
+ volumes: 
+     - /path/to/cert:/etc/path/to/cert
+```
+
+
+The nginx config file /etc/nginx/sites-available/default
+
+```
+http {
+        
+    index index.html;
+
+    server {
+        server_name mydomain.com www.mydomain.com;
+
+        root /home/user/build;
+
+        access_log /var/log/nginx/access.log;
+        error_log /var/log/nginx/error.log;
+
+
+        listen 443 ssl;
+        ssl_certificate /etc/letsencrypt/live/mydomain.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/mydomain.com/privkey.pem;
+        include /etc/letsencrypt/options-ssl-nginx.conf;
+        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+
+        if ($host = www.mydomain.com) {
+            return 301 https://$host$request_uri;
+        }
+
+        if ($host = mydomain.com) {
+            return 301 https://$host$request_uri;
+        }
+    }
+
+}
+
+```
+
+you can renew the certificate using the command below. You can schedule this on a monthly basis with Cron:
+
+`certbot renew`
 
