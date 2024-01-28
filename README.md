@@ -136,7 +136,7 @@ Tada! Our application is up!
 When making changes to API then you have to restart both API and nginx:
 ```bash
 
-<h2>HTTPS or SSL setup</h2>
+# HTTPS or SSL setup
 ### Nginx/HTTPS Configuration
 
 #### About
@@ -184,7 +184,7 @@ nginx:
      - “443:443”
  volumes: 
      - /path/to/cert:/etc/path/to/cert
-```
+```bash
 
 
 The nginx config file /etc/nginx/sites-available/default
@@ -202,8 +202,8 @@ http {
         access_log /var/log/nginx/access.log;
         error_log /var/log/nginx/error.log;
 
-
-        listen 443 ssl;
+        ######### MOST IMPORTANT ##############
+        listen 443 ssl; 
         ssl_certificate /etc/letsencrypt/live/mydomain.com/fullchain.pem;
         ssl_certificate_key /etc/letsencrypt/live/mydomain.com/privkey.pem;
         include /etc/letsencrypt/options-ssl-nginx.conf;
@@ -221,9 +221,11 @@ http {
 
 }
 
-```
+```bash
 
 you can renew the certificate using the command below. You can schedule this on a monthly basis with Cron:
 
-`certbot renew`
+```
+certbot renew
+```bash
 
