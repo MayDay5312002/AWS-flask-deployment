@@ -230,9 +230,9 @@ certbot renew
 ```
 
 you can automatically renew the ssl by:
-`
+```bash
 sudo crontab -l
-`
+```
 you should see this line in /etc/cron.d/crontab
 ```bash
 0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew
