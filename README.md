@@ -127,8 +127,9 @@ location /endpoint {
     proxy_pass http://flaskhelloworld/route
 }
 ```
-Restart Nginx 
+Restart Nginx and service API
 ```bash
+sudo systemctl restart API
 sudo systemctl restart nginx
 ```
 Tada! Our application is up!
