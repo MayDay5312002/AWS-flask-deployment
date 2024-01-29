@@ -127,14 +127,12 @@ location /endpoint {
     proxy_pass http://flaskhelloworld/route
 }
 ```
-Restart Nginx and service API
+Restart Nginx and service API to make the changes show
 ```bash
 sudo systemctl restart API
 sudo systemctl restart nginx
 ```
 Tada! Our application is up!
-
-When making changes to API then you have to restart both API and nginx:
 
 
 # HTTPS or SSL setup
