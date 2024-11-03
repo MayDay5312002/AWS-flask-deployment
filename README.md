@@ -129,8 +129,13 @@ location /endpoint {
 ```
 Restart Nginx and service API to make the changes show
 ```bash
-sudo systemctl restart API
-sudo systemctl restart nginx
+sudo systemctl reload API
+sudo systemctl reload nginx
+```
+If not working.
+```bash
+sudo systemctl reload API
+sudo systemctl reload nginx
 ```
 Tada! Our application is up!
 
