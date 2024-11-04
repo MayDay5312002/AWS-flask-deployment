@@ -127,12 +127,12 @@ location /endpoint {
     proxy_pass http://flaskhelloworld/route
 }
 ```
-Restart Nginx and service API to make the changes show
+Reload Nginx and restart service API to make the changes show
 ```bash
 sudo systemctl restart API
 sudo systemctl reload nginx
 ```
-If not working.
+If not working. Restart both
 ```bash
 sudo systemctl restart API
 sudo systemctl restart nginx
