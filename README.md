@@ -238,7 +238,7 @@ you can automatically renew the ssl by:
 sudo crontab -l
 #If it doesn't work then search it
 ```
-you should see this line in /etc/cron.d/crontab
+you should see this line in /etc/cron.d/certbot
 
 `0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(43200))' && certbot -q renew`
 
