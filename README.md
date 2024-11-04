@@ -233,7 +233,7 @@ you can renew the certificate using the command below. You can schedule this on 
 certbot renew
 ```
 
-you can automatically renew the ssl by:
+you can see any cron for crontab:
 ```bash
 sudo crontab -l
 #If it doesn't work then search it
