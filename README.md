@@ -72,19 +72,34 @@ With that said, create an unit file in the /etc/systemd/system directory
 sudo nano /etc/systemd/system/API.service
 ```
 Then add this into the file.
-```bash
-[Unit]
-Description=Gunicorn instance for a simple hello world app
-After=network.target
-[Service]
-User=ubuntu
-Group=www-data
-WorkingDirectory=/home/ubuntu/API
-ExecStart=/home/ubuntu/API/venv/bin/gunicorn -b localhost:8000 app:app
-Restart=always
-[Install]
-WantedBy=multi-user.target
-```
++ This is for flask:
+	```bash
+	[Unit]
+	Description=Gunicorn instance for a simple hello world app
+	After=network.target
+	[Service]
+	User=ubuntu
+	Group=www-data
+	WorkingDirectory=/home/ubuntu/API
+	ExecStart=/home/ubuntu/API/venv/bin/gunicorn -b localhost:8000 app:app
+	Restart=always
+	[Install]
+	WantedBy=multi-user.target
+	```
+ + This is for Django(Maybe):
+   ```bash
+   	[Unit]
+	Description=Gunicorn instance for SELI LinkedIn Jobs App
+	After=network.target
+	[Service]
+	User=ubuntu
+	Group=www-data
+	WorkingDirectory=/home/ubuntu/LinkedIn_Jobs/linkedInProj/linkedInProj
+	ExecStart=/home/ubuntu/LinkedIn_Jobs/venv/bin/gunicorn --workers 3 -b localhost:8070 linkedInProj.wsgi:application
+	Restart=always
+	[Install]
+	WantedBy=multi-user.target
+   ```
 Then enable the service:
 ```bash
 sudo systemctl daemon-reload
