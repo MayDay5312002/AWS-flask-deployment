@@ -117,6 +117,11 @@ Install Nginx
 ```bash
 sudo apt-get nginx
 ```
+To install more headeers
+```
+sudo apt update
+sudo apt install nginx-extras
+```
 Start the Nginx service and go to the Public IP address of your EC2 on the browser to see the default nginx landing page
 ```bash
 sudo systemctl start nginx
