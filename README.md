@@ -117,7 +117,7 @@ Install Nginx
 ```bash
 sudo apt-get nginx
 ```
-To install more headeers
+To install more headers
 ```
 sudo apt update
 sudo apt install nginx-extras
