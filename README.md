@@ -88,7 +88,7 @@ Then add this into the file.
 	```
  + This is for Django(Maybe):
    ```bash
-   	[Unit]
+	[Unit]
 	Description=Gunicorn instance for SELI LinkedIn Jobs App
 	After=network.target
 	[Service]
