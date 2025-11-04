@@ -266,4 +266,12 @@ To see the config of crontab:
 ```bash
 sudo cat /etc/cron.d/certbot
 ```
+To transfer:
+```
+sudo ln -sf ../../archive/maydayapi.mooo.com/cert11.pem /etc/letsencrypt/live/maydayapi.mooo.com/cert.pem
+sudo ln -sf ../../archive/maydayapi.mooo.com/privkey11.pem /etc/letsencrypt/live/maydayapi.mooo.com/privkey.pem
+sudo ln -sf ../../archive/maydayapi.mooo.com/chain11.pem /etc/letsencrypt/live/maydayapi.mooo.com/chain.pem
+sudo ln -sf ../../archive/maydayapi.mooo.com/fullchain11.pem /etc/letsencrypt/live/maydayapi.mooo.com/fullchain.pem
+```
+- Note: the numbers should match and they should be the biggest version
 
