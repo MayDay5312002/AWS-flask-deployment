@@ -266,7 +266,8 @@ To see the config of crontab:
 ```bash
 sudo cat /etc/cron.d/certbot
 ```
-To transfer:
+To transfer cert:
+you must copy the domain folder name in both the archive and live. You also need to copy the domain conf file in the renewal folder. Copy them to their respected folders (archive, live, and renewal folder)
 ```
 sudo ln -sf ../../archive/maydayapi.mooo.com/cert11.pem /etc/letsencrypt/live/maydayapi.mooo.com/cert.pem
 sudo ln -sf ../../archive/maydayapi.mooo.com/privkey11.pem /etc/letsencrypt/live/maydayapi.mooo.com/privkey.pem
